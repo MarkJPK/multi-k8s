@@ -1,0 +1,17 @@
+# Dockerfile for development purposes
+
+# Build Phase
+FROM node:lts-alpine
+
+# Change the working directory
+WORKDIR '/app'
+
+# Copy the package.json file and install the dependencies
+COPY package.json .
+RUN npm install
+
+# Copy the source files
+COPY . .
+
+# Build the application
+CMD ["npm", "run", "start]
