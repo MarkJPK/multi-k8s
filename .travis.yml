@@ -8,6 +8,19 @@ before_install:
 script:
   - docker run -e CI=true markjpk/react-test npm run test
 
+after_success:
+  - docker build -t markjpk/multi-client ./client
+  - docker build -t markjpk/multi-nginx ./nginx
+  - docker build -t markjpk/multi-server ./server
+  - docker build -t markjpk/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push markjpk/multi-client
+  - docker push markjpk/multi-nginx
+  - docker push markjpk/multi-server
+  - docker push markjpk/multi-worker
+
 deploy:
   provider: elasticbeanstalk
   region: "eu-west-2"
