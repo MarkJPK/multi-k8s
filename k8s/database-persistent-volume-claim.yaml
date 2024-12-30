@@ -4,6 +4,7 @@ metadata:
   name: database-persistent-volume-claim
   namespace: complex
 spec:
+  storageClassName: nfs-csi
   accessModes:
     - ReadWriteOnce
   resources:
