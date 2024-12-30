@@ -15,7 +15,9 @@ spec:
     spec:
       containers:
         - name: client
-          image: markjpk/multi-client
+          image: pve-gitlab.retrosplash.net:5050/kubernetes/docker-kubernetes-course/complex/multi-client
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
+      imagePullSecrets:
+        - name: registry-12

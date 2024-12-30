@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: markjpk/multi-server
+          image: pve-gitlab.retrosplash.net:5050/kubernetes/docker-kubernetes-course/complex/multi-server
           imagePullPolicy: Always
           env:
             - name: REDIS_HOST
@@ -37,3 +37,5 @@ spec:
                   key: PGPASSWORD
           ports:
             - containerPort: 5000
+      imagePullSecrets:
+        - name: registry-12
