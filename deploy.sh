@@ -15,6 +15,6 @@ docker push markjpk/multi-worker:$SHA
 # Apply the Kubernetes configuration files
 kubectl create namespace complex --dry-run=client -o yaml | kubectl apply -f -
 kubectl apply -f k8s
-kubectl set image deployments/client-deployment client=markjpk/multi-client:$SHA
-kubectl set image deployments/server-deployment server=markjpk/multi-server:$SHA
-kubectl set image deployments/worker-deployment worker=markjpk/multi-worker:$SHA
+kubectl set image deployments/client-deployment client=markjpk/multi-client:$SHA -n complex
+kubectl set image deployments/server-deployment server=markjpk/multi-server:$SHA -n complex
+kubectl set image deployments/worker-deployment worker=markjpk/multi-worker:$SHA -n complex
